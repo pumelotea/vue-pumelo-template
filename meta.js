@@ -21,7 +21,7 @@ module.exports = {
             type: 'string',
             required: false,
             message: 'Project description',
-            default: 'a iview vue project ',
+            default: 'a vue project ',
         },
         author: {
             type: 'string',
