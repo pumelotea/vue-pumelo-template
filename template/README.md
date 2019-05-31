@@ -1,7 +1,7 @@
 # {{name}}
 
 
-## 安装依赖
+### 安装依赖
 ```
 cd {{name}}
 yarn install
