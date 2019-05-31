@@ -32,9 +32,18 @@ function parseTime(time, cFormat) {
   return timeStr
 }
 
+function fsExistsSync(path) {
+  try{
+    fs.accessSync(path,fs.F_OK);
+  }catch(e){
+    return false;
+  }
+  return true;
+}
+
 process.env.VUE_APP_BUILD_TIME = parseTime(new Date())
 process.env.VUE_APP_BUILD_VER = pj.version
-
+process.env.VUE_APP_BUILD_REPO_VER = ''
 // 当前脚本的工作目录的路径
 let cwd = '"' + process.cwd() + '"'; // process-node全局模块用来与当前进程互动，可以通过全局变量process访问，不必使用require命令加载。它是一个EventEmitter对象的实例。process.cwd()表示返回运行当前脚本的工作目录的路径
 
@@ -42,10 +51,13 @@ let cwd = '"' + process.cwd() + '"'; // process-node全局模块用来与当前�
 let fs = require("fs")
 let gitHEAD = fs.readFileSync('.git/HEAD', 'utf-8').trim() // ref: refs/heads/develop
 let ref = gitHEAD.split(': ')[1] // refs/heads/develop
+let gitVersion = ''
 let branch = gitHEAD.split('/')[2] // 环境：develop
-let gitVersion = fs.readFileSync('.git/' + ref, 'utf-8').trim() // git版本号，例如：6ceb0ab5059d01fd444cf4e78467cc2dd1184a66
-let gitCommitVersion = branch + ': ' + gitVersion  // 例如dev环境: "develop: 6ceb0ab5059d01fd444cf4e78467cc2dd1184a66"
-process.env.VUE_APP_BUILD_REPO_VER = gitCommitVersion
+if (fsExistsSync(ref)) {
+  gitVersion = fs.readFileSync('.git/' + ref, 'utf-8').trim() // git版本号，例如：6ceb0ab5059d01fd444cf4e78467cc2dd1184a66
+  let gitCommitVersion = branch + ': ' + gitVersion  // 例如dev环境: "develop: 6ceb0ab5059d01fd444cf4e78467cc2dd1184a66"
+  process.env.VUE_APP_BUILD_REPO_VER = gitCommitVersion
+}
 
 console.log('------------------------------------------------------------')
 console.log('|                        BUILD INFO                        |')
