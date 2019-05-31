@@ -75,8 +75,8 @@ exports.printMessage = function printMessage(data, {green, yellow,myc}) {
   ${myc('|  ___/ | | | |   / / |__/ | | |  __|  | |     | | | |')}
   ${myc('| |     | |_| |  / /       | | | |___  | |___  | |_| |')}
   ${myc('|_|     \\\\_____//_/        |_| |_____| |_____| \\\\____/')}
-  ${yellow('vue-cli-iview-template version: ')}${green('1.0.0')}
-  ${yellow('https://github.com/pumelotea/vue-cli-iview-template')}
+  ${yellow('vue-pumelo-template version: ')}${green('1.0.0')}
+  ${yellow('https://github.com/pumelotea/vue-pumelo-template')}
   
 
   To get started（Manually）:
