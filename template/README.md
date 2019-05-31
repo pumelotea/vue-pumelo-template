@@ -1,22 +1,23 @@
 # {{name}}
 
 
-## Project setup
+## 安装依赖
 ```
+cd {{name}}
 yarn install
 ```
 
-### Compiles and hot-reloads for development
+### 开发时候运行
 ```
-yarn run serve
-```
-
-### Compiles and minifies for production
-```
-yarn run build-prod
+yarn serve
 ```
 
-### Compiles and minifies for test
+### 构建发布版
 ```
-yarn run build-test
+yarn build-prod
+```
+
+### 构建测试版
+```
+yarn build-test
 ```
